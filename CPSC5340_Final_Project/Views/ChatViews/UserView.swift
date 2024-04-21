@@ -8,44 +8,39 @@
 import SwiftUI
 
 
-struct TitleView: View {
+struct UserView: View {
     
     var imageUrl = URL(string: "https://cdn2.thedogapi.com/images/quiHq2FiB.jpg")
     var name = "Pet Rescue"
     
     var body: some View {
         HStack(spacing: 20) {
-            AsyncImage(url: imageUrl) { image in
-                image.resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 50, height: 50)
-                    .cornerRadius(50)
-                
+            ZStack(alignment: .bottomTrailing) {
+                Image(systemName: "dog.circle.fill")
+                    .resizable()
+                    .frame(width: 64, height: 64)
+                    .foregroundStyle(.blue, Color(.systemGray4))
+                    Circle()
+                        .fill(.green)
+                        .frame(width: 14, height: 14)
             }
-        placeholder: {
-            ProgressView()
-            
-        }
             VStack(alignment: .leading) {
                 Text(name)
                     .font(.title).bold()
-                    .foregroundColor(.black)
-                Text("online")
-                    .font (.caption)
-                    .foregroundColor(.green)
+                    .foregroundStyle(Color(.black))
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             Image(systemName: "phone.fill")
                 .padding(10)
                 .background(.gray)
-                .foregroundColor(.black)
+                .foregroundStyle(Color(.black))
                 .cornerRadius(50)
-            }
-        .padding()
         }
+        .padding()
     }
+}
 
 #Preview {
-    TitleView()
+    UserView()
         .background(Color("Tan"))
 }
